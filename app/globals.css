@@ -1,0 +1,14 @@
+@import "tailwindcss";
+
+@theme {
+  --animate-shine: shine 6s linear infinite;
+  
+  @keyframes shine {
+    0% {
+      background-position: 200% 0;
+    }
+    100% {
+      background-position: -200% 0;
+    }
+  }
+}

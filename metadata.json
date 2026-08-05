@@ -1,0 +1,6 @@
+{
+  "name": "Soggiorno Track",
+  "description": "The premium independent companion app for the Permesso di Soggiorno journey in Italy. Track status, prepare documents, access Italian immigration guides, and get expert help from Sofia AI.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
