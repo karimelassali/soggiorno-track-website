@@ -1,119 +1,189 @@
-# Soggiorno Track
+# 🇮🇹 Soggiorno Track
 
-The premium independent companion app for the Permesso di Soggiorno journey in Italy. Track status, prepare documents, access Italian immigration guides, and get expert help from Sofia AI.
+> **Your intelligent companion for navigating the Italian Permesso di Soggiorno journey.**  
+> Stop guessing. Start tracking. Get approved.
 
-## Features
+---
 
-- **Track Status**: Monitor your Permesso di Soggiorno application status
-- **Document Preparation**: Get guidance on required documents for your immigration process
-- **Italian Immigration Guides**: Access comprehensive guides about living in Italy
-- **Sofia AI**: Get expert AI-powered assistance for your immigration questions
+## ✨ What is Soggiorno Track?
 
-## Tech Stack
+Navigating the Italian bureaucracy for your **Permesso di Soggiorno** (Residence Permit) can be a nightmare of confusing portals, lost documents, and endless waiting. 
 
-- **Framework**: Next.js 15
-- **Language**: TypeScript
-- **Styling**: Tailwind CSS 4
-- **AI**: Google Gemini API (@google/genai)
-- **UI Components**: 
-  - Lucide React (icons)
-  - Motion (animations)
-  - Custom components (Aceternity, Reactbits)
-- **Form Handling**: React Hook Form
-- **Utilities**: clsx, class-variance-authority, tailwind-merge
+**Soggiorno Track** changes that. It's a modern, AI-powered dashboard designed to:
+- 🕵️ **Track** your application status in real-time.
+- 📄 **Prepare** your documents with automated checklists.
+- 🤖 **Chat** with *Sofia*, our specialized immigration AI assistant.
+- 📚 **Learn** from comprehensive, up-to-date guides.
 
-## Getting Started
+Built for expats, by expats. Built with the latest web technologies for speed and reliability.
+
+---
+
+## 🚀 Features at a Glance
+
+| Feature | Description |
+| :--- | :--- |
+| **📊 Real-Time Dashboard** | Visualize your application stage with progress bars and status indicators. |
+| **🤖 Sofia AI Assistant** | Get instant answers to complex immigration questions powered by Google Gemini. |
+| **📑 Document Vault** | Securely organize and validate your required paperwork before submission. |
+| **📘 Smart Guides** | Step-by-step tutorials tailored to your specific visa type (Work, Study, Family). |
+| **🌐 Multi-Language** | Seamlessly switch between English and Italian interfaces. |
+
+---
+
+## 🛠️ Tech Stack
+
+We use the bleeding edge of modern web development to ensure a fast, secure, and beautiful experience.
+
+### Core Framework
+*   **Next.js 15** (App Router) – The React framework for production.
+*   **TypeScript** – Strictly typed for robustness and fewer bugs.
+*   **Tailwind CSS 4** – Utility-first styling with the new engine for ultimate performance.
+
+### UI & Experience
+*   **Shadcn/ui** – Beautifully designed, accessible components.
+*   **Framer Motion** – Silky smooth animations and transitions.
+*   **Lucide React** – Crisp, consistent iconography.
+
+### Intelligence & Backend
+*   **Google Gemini API** – The brain behind "Sofia," our AI immigration expert.
+*   **Server Actions** – Secure, direct database mutations without API endpoints.
+*   **PostgreSQL** (via Neon/Supabase) – Reliable relational data storage.
+
+---
+
+## 🏁 Getting Started
+
+Ready to take control of your residency journey? Follow these steps to get the project running locally.
 
 ### Prerequisites
 
-- Node.js 20+
-- Bun or npm package manager
-- Google Gemini API key
+Ensure you have the following installed:
+- **Node.js** 20+ (or **Bun**)
+- **Git**
 
-### Installation
+### 1. Clone the Repository
 
-1. Clone the repository:
 ```bash
-git clone <repository-url>
+git clone https://github.com/yourusername/soggiorno-track.git
 cd soggiorno-track
 ```
 
-2. Install dependencies:
+### 2. Install Dependencies
+
+We recommend using **Bun** for speed, but npm works perfectly too.
+
 ```bash
+# Using Bun
 bun install
-# or
+
+# Or using npm
 npm install
 ```
 
-3. Set up environment variables:
+### 3. Environment Setup
+
+Create a `.env.local` file in the root directory and add your API keys:
+
 ```bash
 cp .env.example .env.local
 ```
 
-Edit `.env.local` and add your Gemini API key:
-```
+Edit `.env.local`:
+```env
+# Google Gemini API Key (Get one at https://aistudio.google.com/)
 GEMINI_API_KEY=your_gemini_api_key_here
-APP_URL=http://localhost:3000
+
+# Database URL (PostgreSQL)
+DATABASE_URL="postgresql://user:password@host:5432/dbname"
+
+# Next Auth Secret (Generate with: openssl rand -base64 32)
+NEXTAUTH_SECRET="your_secret_key"
+NEXTAUTH_URL="http://localhost:3000"
 ```
 
-### Development
+### 4. Run the Development Server
 
-Run the development server:
 ```bash
+# Using Bun
 bun dev
-# or
+
+# Or using npm
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) in your browser.
+Open [http://localhost:3000](http://localhost:3000) in your browser to see the magic happen. ✨
 
-## Available Scripts
+---
 
-- `bun dev` / `npm run dev` - Start development server
-- `bun build` / `npm run build` - Build for production
-- `bun start` / `npm run start` - Start production server
-- `bun lint` / `npm run lint` - Run ESLint
-- `bun clean` / `npm run clean` - Clean Next.js cache
+## 📂 Project Structure
 
-## Project Structure
+A clean, modular architecture designed for scalability.
 
-```
-├── app/                    # Next.js App Router
-│   ├── api/               # API routes
-│   ├── globals.css        # Global styles
-│   ├── layout.tsx         # Root layout
-│   └── page.tsx           # Main page component
-├── assets/                # Static assets
-├── components/            # Reusable components
-│   ├── aceternity/        # Aceternity UI components
-│   └── reactbits/         # Reactbits components
-├── hooks/                 # Custom React hooks
-├── lib/                   # Utility functions and translations
-│   ├── translations.ts    # i18n translations
-│   └── utils.ts           # Helper utilities
-├── .env.example           # Environment variables template
-└── package.json           # Dependencies and scripts
+```text
+soggiorno-track/
+├── app/                  # Next.js App Router pages & layouts
+│   ├── (dashboard)/      # Protected dashboard routes
+│   ├── (marketing)/      # Public landing pages
+│   ├── api/              # API endpoints & webhooks
+│   └── layout.tsx        # Root layout with providers
+├── components/           # Reusable React components
+│   ├── ui/               # Base UI components (Buttons, Inputs)
+│   ├── dashboard/        # Dashboard-specific widgets
+│   └── ai/               # Sofia AI chat interface
+├── lib/                  # Utility functions & configurations
+│   ├── gemini.ts         # AI logic
+│   ├── db.ts             # Database connection
+│   └── utils.ts          # Helper functions
+├── public/               # Static assets (images, fonts)
+└── styles/               # Global styles & Tailwind config
 ```
 
-## Configuration
+---
 
-### Google Gemini API
+## ⚡ Available Scripts
 
-This application uses Google's Gemini AI for the Sofia AI assistant feature. To use it:
+| Command | Description |
+| :--- | :--- |
+| `dev` | Starts the development server with hot reloading. |
+| `build` | Creates an optimized production build. |
+| `start` | Runs the built application in production mode. |
+| `lint` | Checks code quality using ESLint. |
+| `type-check` | Validates TypeScript types without emitting files. |
 
-1. Get an API key from [Google AI Studio](https://aistudio.google.com/)
-2. Add it to your `.env.local` file as `GEMINI_API_KEY`
+---
 
-### Tailwind CSS
+## 🎨 Design Philosophy
 
-The project uses Tailwind CSS v4 with the following plugins:
-- `@tailwindcss/postcss`
-- `@tailwindcss/typography`
+Our design isn't just about looking good; it's about reducing anxiety.
+- **Calm Colors:** Soothing blues and greens to counter bureaucratic stress.
+- **Clear Typography:** Readable fonts for dense legal information.
+- **Feedback Loops:** Every action has a clear reaction, so you never feel lost.
 
-## License
+---
 
-Private - All rights reserved
+## 🤝 Contributing
 
-## Support
+We welcome contributions! Whether it's fixing a typo, adding a new guide, or improving the AI prompts, please feel free to open an issue or submit a PR.
 
-For questions about the Permesso di Soggiorno process, use the Sofia AI assistant within the app.
+1. Fork the repo.
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`).
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`).
+4. Push to the branch (`git push origin feature/AmazingFeature`).
+5. Open a Pull Request.
+
+---
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+---
+
+<div align="center">
+
+**Made with ❤️ for the Expat Community in Italy**
+
+[Report Bug](https://github.com/yourusername/soggiorno-track/issues) · [Request Feature](https://github.com/yourusername/soggiorno-track/issues)
+
+</div>
