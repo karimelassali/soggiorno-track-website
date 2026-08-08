@@ -463,6 +463,7 @@ export default function Home() {
                     Companion App
                   </span>
                 </div>
+              </a>
 
               {/* Desktop Menu links */}
               <nav className="hidden md:flex items-center gap-6 lg:gap-8 text-sm font-medium text-slate-600">
