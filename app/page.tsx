@@ -271,8 +271,19 @@ export default function Home() {
     return (
       <div className="min-h-screen bg-[#FAF9F6] flex items-center justify-center">
         <div className="flex flex-col items-center gap-4">
-          <div className="w-12 h-12 rounded-full border-4 border-[#008C45] border-t-transparent animate-spin"></div>
-          <p className="text-gray-500 font-mono text-sm">Soggiorno Track...</p>
+          <motion.div 
+            initial={{ scale: 0.8, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ duration: 0.5 }}
+            className="w-12 h-12 rounded-full border-4 border-[#008C45] border-t-transparent"
+            style={{ animation: 'spin 1s linear infinite' }}
+          ></motion.div>
+          <motion.p 
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2 }}
+            className="text-gray-500 font-medium text-sm tracking-tight"
+          >Soggiorno Track...</motion.p>
         </div>
       </div>
     );
@@ -285,22 +296,33 @@ export default function Home() {
       <AnimatePresence>
         {!selectedLang && (
           <motion.div 
-            initial={{ opacity: 1 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.5 }}
+            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
             className="fixed inset-0 z-50 bg-slate-900/40 backdrop-blur-xl flex flex-col items-center justify-center p-6 overflow-y-auto relative"
           >
             {/* Background Mesh Gradient */}
             <div className="absolute inset-0 z-0 opacity-20 pointer-events-none overflow-hidden">
-              <div className="absolute top-[-10%] left-[-10%] w-[700px] h-[700px] rounded-full bg-emerald-500/20 blur-[150px]"></div>
-              <div className="absolute bottom-[-10%] right-[-10%] w-[700px] h-[700px] rounded-full bg-rose-500/20 blur-[150px]"></div>
+              <motion.div 
+                initial={{ scale: 0.8, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                transition={{ duration: 1.5, ease: "easeOut" }}
+                className="absolute top-[-10%] left-[-10%] w-[700px] h-[700px] rounded-full bg-emerald-500/20 blur-[150px]"
+              ></motion.div>
+              <motion.div 
+                initial={{ scale: 0.8, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                transition={{ duration: 1.5, delay: 0.2, ease: "easeOut" }}
+                className="absolute bottom-[-10%] right-[-10%] w-[700px] h-[700px] rounded-full bg-rose-500/20 blur-[150px]"
+              ></motion.div>
             </div>
 
             <motion.div 
-              initial={{ y: 30, opacity: 0, scale: 0.98 }}
+              initial={{ y: 40, opacity: 0, scale: 0.96 }}
               animate={{ y: 0, opacity: 1, scale: 1 }}
-              transition={{ delay: 0.1, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-              className="max-w-xl w-full bg-white/95 backdrop-blur-md rounded-[2.5rem] shadow-[0_32px_80px_-16px_rgba(0,0,0,0.12)] border border-slate-100/80 p-8 md:p-12 text-center flex flex-col items-center relative overflow-hidden z-10"
+              transition={{ delay: 0.2, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+              className="max-w-xl w-full frosted-glass rounded-[2.5rem] shadow-apple-xl p-8 md:p-12 text-center flex flex-col items-center relative overflow-hidden z-10"
             >
               {/* Decoration Top flag bar */}
               <div className="absolute top-0 left-0 w-full h-1.5 flex">
@@ -330,31 +352,41 @@ export default function Home() {
               </div>
 
               {/* Dynamic Welcome Heading */}
-              <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 tracking-tight mb-3">
+              <motion.h2 
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.4, duration: 0.6 }}
+                className="text-3xl md:text-4xl font-semibold text-slate-900 tracking-tight mb-3"
+              >
                 Benvenuto
-              </h2>
+              </motion.h2>
               
-              <p className="text-slate-500 mb-8 text-sm md:text-base max-w-sm leading-relaxed font-medium">
+              <motion.p 
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.5, duration: 0.6 }}
+                className="text-slate-500 mb-8 text-sm md:text-base max-w-sm leading-relaxed font-medium"
+              >
                 Choose your preferred language to begin your Permesso di Soggiorno journey.
-              </p>
+              </motion.p>
 
               {/* Language Selection Grid */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 w-full max-w-md mb-8">
                 {languages.map((lang, index) => (
                   <motion.button
                     key={lang.code}
-                    initial={{ scale: 0.95, opacity: 0 }}
-                    animate={{ scale: 1, opacity: 1 }}
-                    transition={{ delay: 0.2 + index * 0.05, duration: 0.3 }}
+                    initial={{ scale: 0.95, opacity: 0, y: 20 }}
+                    animate={{ scale: 1, opacity: 1, y: 0 }}
+                    transition={{ delay: 0.3 + index * 0.07, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
                     onClick={() => handleSelectLanguage(lang.code)}
-                    className="group relative flex items-center justify-between p-4 rounded-2xl bg-slate-50/50 hover:bg-white border border-slate-100/80 hover:border-emerald-500/40 transition-all duration-300 text-left cursor-pointer shadow-2xs hover:shadow-md hover:-translate-y-0.5"
+                    className="apple-card group relative flex items-center justify-between p-4 rounded-2xl bg-white/60 hover:bg-white border border-white/40 hover:border-emerald-500/30 text-left cursor-pointer"
                   >
                     <div className="flex items-center gap-3">
                       <span className="text-2xl filter drop-shadow-sm group-hover:scale-110 transition-transform duration-300">
                         {lang.flag}
                       </span>
                       <div>
-                        <p className="font-bold text-slate-800 text-sm group-hover:text-emerald-700 transition-colors">
+                        <p className="font-semibold text-slate-800 text-sm group-hover:text-emerald-700 transition-colors">
                           {lang.label}
                         </p>
                         <p className="text-[9px] text-slate-400 font-mono tracking-wider font-semibold">
@@ -380,10 +412,20 @@ export default function Home() {
       {selectedLang && (
         <div className="relative overflow-hidden bg-slate-50/40 min-h-screen">
           
-          {/* Background Mesh Gradient */}
+          {/* Background Mesh Gradient with subtle animation */}
           <div className="absolute inset-0 z-0 opacity-15 pointer-events-none overflow-hidden">
-            <div className="absolute top-[-10%] left-[-10%] w-[700px] h-[700px] rounded-full bg-emerald-500/10 blur-[150px]"></div>
-            <div className="absolute bottom-[-10%] right-[-10%] w-[700px] h-[700px] rounded-full bg-rose-500/10 blur-[150px]"></div>
+            <motion.div 
+              initial={{ scale: 0.8, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{ duration: 2, ease: "easeOut" }}
+              className="absolute top-[-10%] left-[-10%] w-[700px] h-[700px] rounded-full bg-emerald-500/10 blur-[150px]"
+            ></motion.div>
+            <motion.div 
+              initial={{ scale: 0.8, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{ duration: 2, delay: 0.3, ease: "easeOut" }}
+              className="absolute bottom-[-10%] right-[-10%] w-[700px] h-[700px] rounded-full bg-rose-500/10 blur-[150px]"
+            ></motion.div>
           </div>
           
           {/* Italian flag top strip */}
@@ -393,8 +435,8 @@ export default function Home() {
             <div className="w-1/3 h-full bg-rose-600"></div>
           </div>
 
-          {/* 2. PREMIUM STICKY NAVBAR */}
-          <header className="sticky top-1 left-0 w-full z-30 bg-white/80 backdrop-blur-md border-b border-slate-100 shadow-[0_2px_20px_rgba(0,0,0,0.01)] transition-all">
+          {/* 2. PREMIUM STICKY NAVBAR - Apple-style frosted glass */}
+          <header className="sticky top-1 left-0 w-full z-30 frosted-glass border-b border-white/30 shadow-apple-sm transition-all">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-18 flex items-center justify-between">
               
               {/* Logo branding */}
@@ -409,51 +451,55 @@ export default function Home() {
                   </div>
                 </div>
                 <div>
-                  <span className="font-bold text-slate-900 tracking-tight text-lg group-hover:text-emerald-700 transition-colors block leading-tight">
+                  <motion.span 
+                    initial={{ opacity: 0, x: -10 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.4 }}
+                    className="font-medium text-slate-900 tracking-tight text-lg group-hover:text-emerald-700 transition-colors block leading-tight"
+                  >
                     Soggiorno Track
-                  </span>
+                  </motion.span>
                   <span className="text-[9px] text-slate-400 font-mono tracking-widest uppercase block mt-0.5">
                     Companion App
                   </span>
                 </div>
-              </a>
 
               {/* Desktop Menu links */}
-              <nav className="hidden md:flex items-center gap-6 lg:gap-8 text-sm font-semibold text-slate-600">
+              <nav className="hidden md:flex items-center gap-6 lg:gap-8 text-sm font-medium text-slate-600">
                 <button 
                   onClick={() => scrollToRef(featuresRef)}
-                  className={cn("hover:text-slate-900 cursor-pointer transition-all relative py-2", activeSection === 'features' ? "text-emerald-700 font-bold" : "text-slate-500")}
+                  className={cn("hover:text-slate-900 cursor-pointer transition-all relative py-2", activeSection === 'features' ? "text-slate-900 font-semibold" : "text-slate-500")}
                 >
                   {t.navFeatures}
-                  {activeSection === 'features' && <span className="absolute bottom-0 left-0 w-full h-0.5 bg-emerald-600 rounded-full"></span>}
+                  {activeSection === 'features' && <motion.span initial={{ scaleX: 0 }} animate={{ scaleX: 1 }} transition={{ duration: 0.3 }} className="absolute bottom-0 left-0 w-full h-0.5 bg-slate-900 rounded-full"></motion.span>}
                 </button>
                 <button 
                   onClick={() => scrollToRef(sofiaRef)}
-                  className={cn("hover:text-slate-900 cursor-pointer transition-all relative py-2", activeSection === 'sofia' ? "text-emerald-700 font-bold" : "text-slate-500")}
+                  className={cn("hover:text-slate-900 cursor-pointer transition-all relative py-2", activeSection === 'sofia' ? "text-slate-900 font-semibold" : "text-slate-500")}
                 >
                   {t.navSofia}
-                  {activeSection === 'sofia' && <span className="absolute bottom-0 left-0 w-full h-0.5 bg-emerald-600 rounded-full"></span>}
+                  {activeSection === 'sofia' && <motion.span initial={{ scaleX: 0 }} animate={{ scaleX: 1 }} transition={{ duration: 0.3 }} className="absolute bottom-0 left-0 w-full h-0.5 bg-slate-900 rounded-full"></motion.span>}
                 </button>
                 <button 
                   onClick={() => scrollToRef(howItWorksRef)}
-                  className={cn("hover:text-slate-900 cursor-pointer transition-all relative py-2", activeSection === 'how-it-works' ? "text-emerald-700 font-bold" : "text-slate-500")}
+                  className={cn("hover:text-slate-900 cursor-pointer transition-all relative py-2", activeSection === 'how-it-works' ? "text-slate-900 font-semibold" : "text-slate-500")}
                 >
                   {t.navHowItWorks}
-                  {activeSection === 'how-it-works' && <span className="absolute bottom-0 left-0 w-full h-0.5 bg-emerald-600 rounded-full"></span>}
+                  {activeSection === 'how-it-works' && <motion.span initial={{ scaleX: 0 }} animate={{ scaleX: 1 }} transition={{ duration: 0.3 }} className="absolute bottom-0 left-0 w-full h-0.5 bg-slate-900 rounded-full"></motion.span>}
                 </button>
                 <button 
                   onClick={() => scrollToRef(faqRef)}
-                  className={cn("hover:text-slate-900 cursor-pointer transition-all relative py-2", activeSection === 'faq' ? "text-emerald-700 font-bold" : "text-slate-500")}
+                  className={cn("hover:text-slate-900 cursor-pointer transition-all relative py-2", activeSection === 'faq' ? "text-slate-900 font-semibold" : "text-slate-500")}
                 >
                   {t.navFAQ}
-                  {activeSection === 'faq' && <span className="absolute bottom-0 left-0 w-full h-0.5 bg-emerald-600 rounded-full"></span>}
+                  {activeSection === 'faq' && <motion.span initial={{ scaleX: 0 }} animate={{ scaleX: 1 }} transition={{ duration: 0.3 }} className="absolute bottom-0 left-0 w-full h-0.5 bg-slate-900 rounded-full"></motion.span>}
                 </button>
                 <button 
                   onClick={() => scrollToRef(roadmapRef)}
-                  className={cn("hover:text-slate-900 cursor-pointer transition-all relative py-2", activeSection === 'roadmap' ? "text-emerald-700 font-bold" : "text-slate-500")}
+                  className={cn("hover:text-slate-900 cursor-pointer transition-all relative py-2", activeSection === 'roadmap' ? "text-slate-900 font-semibold" : "text-slate-500")}
                 >
                   {t.navRoadmap}
-                  {activeSection === 'roadmap' && <span className="absolute bottom-0 left-0 w-full h-0.5 bg-emerald-600 rounded-full"></span>}
+                  {activeSection === 'roadmap' && <motion.span initial={{ scaleX: 0 }} animate={{ scaleX: 1 }} transition={{ duration: 0.3 }} className="absolute bottom-0 left-0 w-full h-0.5 bg-slate-900 rounded-full"></motion.span>}
                 </button>
               </nav>
 
@@ -464,7 +510,7 @@ export default function Home() {
                 <div className="relative">
                   <button 
                     onClick={() => setIsLangDropdownOpen(!isLangDropdownOpen)}
-                    className="flex items-center gap-2 px-3.5 py-2 border border-slate-200 hover:border-emerald-500/30 rounded-full text-xs font-bold bg-white hover:bg-slate-50 text-slate-700 transition-all shadow-2xs cursor-pointer"
+                    className="flex items-center gap-2 px-3.5 py-2 border border-white/40 hover:border-emerald-500/30 rounded-full text-xs font-medium bg-white/60 hover:bg-white/80 text-slate-700 transition-all shadow-apple-sm cursor-pointer frosted-glass"
                   >
                     <Languages className="w-3.5 h-3.5 text-emerald-600" />
                     <span>{languages.find(l => l.code === selectedLang)?.flag}</span>
@@ -475,10 +521,11 @@ export default function Home() {
                   <AnimatePresence>
                     {isLangDropdownOpen && (
                       <motion.div 
-                        initial={{ opacity: 0, y: 10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: 10 }}
-                        className={cn("absolute top-full mt-2 w-44 bg-white border border-slate-100 rounded-2xl shadow-xl p-1.5 z-50", isRTL ? "left-0" : "right-0")}
+                        initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                        animate={{ opacity: 1, y: 0, scale: 1 }}
+                        exit={{ opacity: 0, y: 10, scale: 0.95 }}
+                        transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
+                        className={cn("absolute top-full mt-2 w-44 frosted-glass border border-white/40 rounded-2xl shadow-apple-xl p-1.5 z-50", isRTL ? "left-0" : "right-0")}
                       >
                         {languages.map((lang) => (
                           <button
